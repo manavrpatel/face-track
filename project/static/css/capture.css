@@ -1,0 +1,29 @@
+body {
+    background-color: white;
+    color: black
+}
+
+.banner {
+    background: #4ca4fc;
+    border-radius: 4px;
+}
+
+.banner__content {
+padding: 16px;
+margin: 0 auto;
+display: flex;
+align-items: center;
+}
+
+.banner__text {
+flex-grow: 1;
+line-height: 1.4;
+font-family: "Quicksand", sans-serif;
+}
+
+
+.banner__text{
+color: #ffffff;
+}
+
+

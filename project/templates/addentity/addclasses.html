@@ -1,0 +1,56 @@
+{% extends '/addentity/addentity_base.html' %}
+{% block title %}
+    Add a new class
+{% endblock %}
+
+
+{% block content %}
+
+    <!-- navbar here -->
+    <nav class="navbar bg-light">
+        <div class="container-fluid ">
+        <a class="navbar-brand" href="{{url_for('classrooms_page')}}">
+            <img src="/static/images/logo.jpg" alt="" width="30" height="30" class="d-inline-block">
+            CLASSROOMS
+        </a>
+        <a href="{{url_for('addclass_page')}}" class="btn btn-outline-success">Add new Classroom</a>
+        </div>
+    </nav>
+
+    <!-- form here -->
+    <section class="Form my-4 my-5">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-lg-5 mt-5">
+                    <img src="/static/images/addnewclass.webp" class="img-fluid" alt="">
+                </div>
+                <div class="col-lg-7 px-5 pt-5">
+                    <h1 class="font-weight-bold  py-3"> CREATE A NEW CLASSROOM</h1>
+                    <form method="POST">
+                        {{form.hidden_tag()}}
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                {{ form.class_name(class="form-control my-3 p-4", placeholder="Class NAME") }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                {{ form.class_subject(class="form-control my-3 p-4", placeholder="Subject") }}
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                {{ form.submit(class="btn1 mt-3 mb-5")}}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+      
+      

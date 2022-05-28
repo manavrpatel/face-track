@@ -1,0 +1,6 @@
+{% extends '/capture/capturebase.html' %}
+
+
+{% block content %}
+  <img style="box-shadow: 0px 2px 10px rgba(0,0,0,1.0); border-radius: 8px;" src="{{ url_for('screen_feed', classid=class_id) }}" width="auto" height="300">
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends 'info.html' %}
+
+
+{% block content %}
+    <a class="nav-link active" aria-current="page" href="{{url_for('class_info', classid=class_id)}}"> <b>Mark Attendance(CAM)</b> </a>
+    <a class="nav-link active" style="color: #542de0" aria-current="page" href="{{url_for('info_page_sc', classid=class_id)}}">(Switch to Screen Capture)</a>
+{% endblock %}
