@@ -44,6 +44,8 @@ def gen_shots(known_face_encodings, known_face_names, known_face_id, classid):
                 if matches[best_match_index]:
                     name = known_face_names[best_match_index]
                     id = known_face_id[best_match_index]
+                else:
+                    name = "unknown"
                 face_names.append(name)
                 face_ids.append(id)
             

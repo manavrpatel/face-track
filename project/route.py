@@ -157,10 +157,10 @@ def screen_feed(classid):
 
 
 #donload csv file for attendance
-@app.route('/downloadreport')
-def download_csv():   
+@app.route('/downloadreport/<classid>')
+def download_csv(classid):   
 
-    csv_list = Student.query.with_entities(Student.std_id, Student.std_name, Student.std_attendance).filter_by(std_class=1)
+    csv_list = Student.query.with_entities(Student.std_id, Student.std_name, Student.std_attendance).filter_by(std_class=classid)
    
     output = io.StringIO()
     writer = csv.writer(output)

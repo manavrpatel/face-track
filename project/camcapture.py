@@ -39,6 +39,8 @@ def gen_frames(known_face_encodings, known_face_names, known_face_id, classid):
                 if matches[best_match_index]:
                     name = known_face_names[best_match_index]
                     id = known_face_id[best_match_index]
+                else :
+                    continue
                 face_names.append(name)
                 face_ids.append(id)
 
@@ -64,5 +66,8 @@ def gen_frames(known_face_encodings, known_face_names, known_face_id, classid):
             frame = buffer.tobytes()
             yield (b'--frame\r\n'
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+        
+    camera.release()
+    cv2.destroyAllWindows()
 
 
