@@ -43,7 +43,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]]
+![Product Name Screen Shot][product-screenshot]
 
 There are great attendance tracking tools out there. However, Marking Attendance of students or staff especially when there are more than a few people, takes a lots of time and consumes a vast portion of the lecture/meeting time. So, how this web-app can help out??
 
