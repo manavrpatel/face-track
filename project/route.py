@@ -5,7 +5,7 @@ from project.forms import addclassform, addstudentform
 from project.model import Allclasses, Student
 from project.camcapture import gen_frames
 from project.screencapture import gen_shots
-from project.function import total_student, present_student, get_face_encodings, get_face_names
+from project.function import total_student, present_student, get_face_encodings, get_face_names, get_face_id
 
 import csv
 import io
@@ -134,7 +134,8 @@ def video_feed(classid):
     classid=classid
     known_face_encodings = get_face_encodings(classid)
     known_face_names = get_face_names(classid)
-    return Response(gen_frames(known_face_encodings, known_face_names, classid), mimetype='multipart/x-mixed-replace; boundary=frame')
+    known_face_id = get_face_id(classid)
+    return Response(gen_frames(known_face_encodings, known_face_names, known_face_id, classid), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
 
@@ -150,7 +151,8 @@ def screen_feed(classid):
     classid=classid
     known_face_encodings = get_face_encodings(classid)
     known_face_names = get_face_names(classid)
-    return Response(gen_shots(known_face_encodings, known_face_names, classid), mimetype='multipart/x-mixed-replace; boundary=frame')
+    known_face_id = get_face_id(classid)
+    return Response(gen_shots(known_face_encodings, known_face_names, known_face_id, classid), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
 
@@ -173,11 +175,3 @@ def download_csv():
     output.seek(0)   
     return Response(output, mimetype="text/csv", headers={"Content-Disposition":"attachment;filename=Attendance_report.csv"})
 
-
-
-#delete a student
-@app.route('/<stdid>/deletestd')
-def delete_std(stdid):
-    stdid=stdid
-    Student.query.filter_by(std_id=stdid).delete()
-    db.session.commit()

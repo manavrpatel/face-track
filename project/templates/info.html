@@ -60,7 +60,7 @@
                     <img src="/static/images/Personal.png" width="100px" class="card-image-top" alt="image">
                       <div class="card-body" style="border-radius: 5px; background-color: white;">
                         <h5 class="card-title">{{std.std_name}}</h5>
-                        <p class="card-text">Roll Number: <b> {{std.std_rollno}}</b></p>
+                        <p class="card-text">{{std.std_rollno}}</p>
                         <a href="{{url_for('mark_absent', std_id=std.std_id)}}" class="btn btn-primary">Mark Absent</a>
                       </div>
                     </div>                                  
@@ -71,7 +71,7 @@
                   <img src="/static/images/Personal.png" width="100px" class="card-image-top" alt="image">
                     <div class="card-body" style="border-radius: 5px; background-color: white;">
                       <h5 class="card-title">{{std.std_name}}</h5>
-                      <p class="card-text">Roll Number: <b> {{std.std_rollno}}</b></p>
+                      <p class="card-text">{{std.std_rollno}}</p>
                       <a href="{{url_for('mark_present', std_id=std.std_id)}}" class="btn btn-primary">Mark Present</a>
                     </div>
                   </div>                                  

@@ -4,7 +4,7 @@ import numpy as np
 from project.function import attendance
 
 
-def gen_frames(known_face_encodings, known_face_names, classid): 
+def gen_frames(known_face_encodings, known_face_names, known_face_id, classid): 
     camera = cv2.VideoCapture(0)
     face_locations = []
     face_encodings = []
@@ -27,6 +27,7 @@ def gen_frames(known_face_encodings, known_face_names, classid):
             face_locations = face_recognition.face_locations(rgb_small_frame)
             face_encodings = face_recognition.face_encodings(rgb_small_frame, face_locations)
             face_names = []
+            face_ids = []
 
             for face_encoding in face_encodings:
                 # See if the face is a match for the known face(s)
@@ -37,11 +38,13 @@ def gen_frames(known_face_encodings, known_face_names, classid):
                 best_match_index = np.argmin(face_distances)
                 if matches[best_match_index]:
                     name = known_face_names[best_match_index]
+                    id = known_face_id[best_match_index]
                 face_names.append(name)
+                face_ids.append(id)
 
 
             # Display the results
-            for (top, right, bottom, left), name in zip(face_locations, face_names):
+            for (top, right, bottom, left), name, id in zip(face_locations, face_names, face_ids):
                 # Scale back up face locations since the frame we detected in was scaled to 1/4 size
                 top *= 4
                 right *= 4
@@ -54,7 +57,7 @@ def gen_frames(known_face_encodings, known_face_names, classid):
                 cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
                 font = cv2.FONT_HERSHEY_DUPLEX
                 cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
-                attendance(name, classid)
+                attendance(id, classid)
                 
 
             ret, buffer = cv2.imencode('.jpg', frame)

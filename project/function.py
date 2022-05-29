@@ -22,8 +22,8 @@ def present_student():
     return present_student
 
 #Mark present
-def attendance(name, class_id):
-    present_student = Student.query.filter_by(std_name=name, std_class=class_id).first()
+def attendance(id, class_id):
+    present_student = Student.query.filter_by(std_id=id, std_class=class_id).first()
     present_student.std_attendance = 1
     db.session.commit()
     
@@ -47,3 +47,11 @@ def get_face_names(classid):
             known_face_names.append(face_names)
     return known_face_names
 
+#generate face id
+def get_face_id(classid):
+    known_face_id=[]
+    idlist = Student.query.with_entities(Student.std_id).filter_by(std_class=classid)
+    for each in idlist:
+        for face_ids in each:
+            known_face_id.append(face_ids)
+    return known_face_id
